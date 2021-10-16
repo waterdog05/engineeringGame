@@ -6,6 +6,8 @@ Servo servo2;
 int pos1 = 90;
 int pos2 = 90;
 
+LiquidCrystal_I2C lcd(0x27, 16, 2); //SCL = A4; SDA = A5;
+
 int trigPin1 = 4;  //trig, echo setup
 int echoPin1 = 5;
 int trigPin2 = 6;
@@ -28,6 +30,9 @@ void showResult();
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+
+  lcd.begin();
+  lcd.backlight();
   
   servo1.attach(2);
   servo2.attach(3);
@@ -45,12 +50,19 @@ void loop() {
   // put your main code here, to run repeatedly:  
   buttonPushCounter1 = btnCnt1();  //count push
   buttonPushCounter2 = btnCnt2();
-  Serial.print("buttonPushCounter1 : ");  //print push
-  Serial.println(buttonPushCounter1);
-  Serial.print("buttonPushCounter2 : ");
-  Serial.println(buttonPushCounter2);
-  Serial.println();
-  delay(50);
+
+  lcd.setCursor(0, 0);
+  lcd.print("1P:");
+  lcd.setCursor(10, 0);
+  lcd.print("2P:");
+  lcd.setCursor(3, 0);
+  lcd.print(buttonPushCounter1);
+  lcd.setCursor(13, 0);
+  lcd.print(buttonPushCounter2);
+  delay(70);
+  lcd.clear();
+  
+  
 }
 
 int btnCnt1() {
@@ -60,7 +72,7 @@ int btnCnt1() {
     if (buttonState1 == HIGH) {
       buttonPushCounter1++;
     }
-    delay(50);
+
   }
   lastButtonState1 = buttonState1;
 
@@ -70,11 +82,11 @@ int btnCnt1() {
 int btnCnt2() {
   buttonState2 = digitalRead(buttonPin2);
   
-  if (buttonState2 != lastButtonState2) {
+  if (buttonState2 != lastButtonState2) { //72 86
     if (buttonState2 == HIGH) {
       buttonPushCounter2++;
     }
-    delay(50);
+
   }
   lastButtonState2 = buttonState2;
 

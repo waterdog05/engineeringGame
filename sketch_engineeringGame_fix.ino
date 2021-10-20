@@ -175,6 +175,9 @@ void moveBelt() {
     cntFirstPWin = cntFirstPWin;
     cntSecondPWin = cntSecondPWin;
   }
+  
+  buttonPushCounter1 = 0;
+  buttonPushCounter2 = 0;
 }
 
 void calcFinWinner() {

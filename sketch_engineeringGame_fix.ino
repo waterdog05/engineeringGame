@@ -26,6 +26,9 @@ int lastButtonState2 = 0;
 int buttonPushCounter2;
 
 int winner = 0;  //1P or 2P
+int finWinner = 0;
+int cntFirstPWin = 0;
+int cntSecondPWin = 0;
 int stopper = 0;
 
 void gameStarting();  //setting game
@@ -111,11 +114,13 @@ void btnCnt1() {
   }
   lastButtonState1 = buttonState1;
 
+  /*
   lcd.setCursor(1, 2);  //print 1P's push count on lcd
   lcd.print("1P:");
   lcd.setCursor(4, 2);
   //buttonPushCounter = 3; //for test
   lcd.print(buttonPushCounter1);
+  */
 }
 
 void btnCnt2() {  
@@ -128,11 +133,13 @@ void btnCnt2() {
   //delay(50);
   }
   lastButtonState2 = buttonState2;
-
+  
+  /*
   lcd.setCursor(14, 2);  //print 2P's push count on lcd
   lcd.print("2P:");
   lcd.setCursor(17, 2);
   lcd.print(buttonPushCounter2);
+  */
 }
 
 int stopCountPush() {
@@ -194,11 +201,13 @@ void gameReset() {
   stopper = 0;
   buttonPushCounter1 = 0;
   buttonPushCounter2 = 0;
+  winner = 0;
+  
 
   lcd.setCursor(2, 1);
   lcd.print("Game Resetting..");
   
-  switch (winner) {
+  switch (finWinner) {
     case 1:
       winner = 0;
       servo1.write(80);  //+10cm move

@@ -25,7 +25,6 @@ int buttonState2 = 0;
 int lastButtonState2 = 0;
 int buttonPushCounter2;
 
-int winner = 0;  //1P or 2P
 int finWinner = 0;
 int cntFirstPWin = 0;
 int cntSecondPWin = 0;
@@ -36,6 +35,7 @@ void btnCnt1();  //button counting function
 void btnCnt2();
 //int stopCountPush();  //function that ends game after 1m for MsTimer2
 void moveBelt();  //move belt during game
+void calcFinWinner();  //choose final winner
 void ShowResult();  //show game result
 void gameReset();  //reset game
 
@@ -150,8 +150,8 @@ int stopCountPush() {
 */
 
 void moveBelt() {
-  if (cntFirstPWin > cntSecondPWin) {  //1P win
-    finWinner = 1;
+  if (buttonPushCounter1 > buttonPushCounter2) {  //1P win
+    cntFirstPWin += 1;
     
     digitalWrite(firstp_Led, LOW);
     servo1.write(100);
@@ -161,8 +161,8 @@ void moveBelt() {
     servo2.write(90);
     delay(3000);
   }
-  else if (cntFirstPWin < cntSecondPWin) {  //2P win
-    finWinner = 2;
+  else if (buttonPushCounter1 < buttonPushCounter2) {  //2P win
+    cntSecondPWin += 1;
     
     servo1.write(80);
     servo2.write(80);
@@ -171,7 +171,20 @@ void moveBelt() {
     servo2.write(90);
     delay(3000);
   }
-  else { 
+  else {
+    cntFirstPWin = cntFirstPWin;
+    cntSecondPWin = cntSecondPWin;
+  }
+}
+
+void calcFinWinner() {
+  if (cntFirstPWin > cntSecondPWin) {
+    finWinner = 1;
+  }
+  else if (cntFirstPWin < cntSecondPWin) {
+    finWinner = 2;
+  }
+  else {
     finWinner = 3;
   }
 }
@@ -238,7 +251,7 @@ void gameReset() {
   
   switch (finWinner) {
     case 1:
-      winner = 0;
+      finWinner = 0;
       servo1.write(80);  //+10cm move
       servo2.write(80);
       delay(2220);
@@ -247,7 +260,7 @@ void gameReset() {
       break;
       
     case 2:
-      winner = 0;
+      finWinner = 0;
       servo1.write(100);  //-10cm move
       servo2.write(100);
       delay(2220);
@@ -256,11 +269,10 @@ void gameReset() {
       break;
       
     case 3:
-      winner = 0;
+      finWinner = 0;
       break;
   }
 
-  finWinner = 0;
   delay(1500);
   lcd.clear();
   lcd.setCursor(3, 1);

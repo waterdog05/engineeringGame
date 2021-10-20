@@ -243,8 +243,8 @@ void gameReset() {
   stopper = 0;
   buttonPushCounter1 = 0;
   buttonPushCounter2 = 0;
-  winner = 0;
-  
+  cntFirstPWin = 0;
+  cntSecondPWin = 0;
 
   lcd.setCursor(2, 1);
   lcd.print("Game Resetting..");

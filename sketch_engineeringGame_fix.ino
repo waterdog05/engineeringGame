@@ -153,7 +153,6 @@ void moveBelt() {
   if (buttonPushCounter1 > buttonPushCounter2) {  //1P win
     cntFirstPWin += 1;
     
-    digitalWrite(firstp_Led, LOW);
     servo1.write(100);
     servo2.write(100);
     delay(2000);

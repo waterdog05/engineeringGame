@@ -35,7 +35,8 @@ void gameStarting();  //setting game
 void btnCnt1();  //button counting function
 void btnCnt2();
 //int stopCountPush();  //function that ends game after 1m for MsTimer2
-void showResult();  //show game result
+void moveBelt();  //move belt during game
+void ShowResult();  //show game result
 void gameReset();  //reset game
 
 void setup() {
@@ -142,20 +143,15 @@ void btnCnt2() {
   */
 }
 
+/*
 int stopCountPush() {
   stopper = 1;
 }
+*/
 
-void showResult() {
-  if (buttonPushCounter1 > buttonPushCounter2) {  //1P win
-    winner = 1;
-    
-    digitalWrite(firstp_Led, HIGH);
-    lcd.setCursor(2, 3);
-    lcd.print("Win!");
-    lcd.setCursor(14, 3);
-    lcd.print("Lose");
-    delay(5000);
+void moveBelt() {
+  if (cntFirstPWin > cntSecondPWin) {  //1P win
+    finWinner = 1;
     
     digitalWrite(firstp_Led, LOW);
     servo1.write(100);
@@ -165,16 +161,8 @@ void showResult() {
     servo2.write(90);
     delay(3000);
   }
-  else if (buttonPushCounter1 < buttonPushCounter2) {  //2P win
-    winner = 2;
-       
-    digitalWrite(secondp_Led, HIGH); 
-    lcd.setCursor(2, 3);
-    lcd.print("Lose");
-    lcd.setCursor(14, 3);
-    lcd.print("Win!");
-    delay(5000);
-    digitalWrite(secondp_Led, LOW);
+  else if (cntFirstPWin < cntSecondPWin) {  //2P win
+    finWinner = 2;
     
     servo1.write(80);
     servo2.write(80);
@@ -184,7 +172,7 @@ void showResult() {
     delay(3000);
   }
   else { 
-    winner = 3;
+    finWinner = 3;
 
     digitalWrite(firstp_Led, HIGH);
     digitalWrite(secondp_Led, HIGH);
@@ -193,6 +181,48 @@ void showResult() {
     delay(10000);
     digitalWrite(firstp_Led, LOW);
     digitalWrite(secondp_Led, LOW);
+  }
+}
+
+void showResult() {
+  switch (finWinner) {
+    case 1:
+      digitalWrite(firstp_Led, HIGH);
+      lcd.setCursor(2, 3);
+      lcd.print("Win!");
+      lcd.setCursor(14, 3);
+      lcd.print("Lose");
+      //delay(5000);
+
+      servo1.write(100);  //move 2cm
+      servo2.write(100);
+      delay(2000);
+      servo1.write(90);
+      servo2.write(90);
+      //delay(3000);
+      digitalWrite(firstp_Led, LOW);
+      break;
+
+    case 2:
+      digitalWrite(secondp_Led, HIGH); 
+      lcd.setCursor(2, 3);
+      lcd.print("Lose");
+      lcd.setCursor(14, 3);
+      lcd.print("Win!");
+      //delay(5000);
+
+      servo1.write(80);
+      servo2.write(80);
+      delay(2000);
+      servo1.write(90);
+      servo2.write(90);
+      //delay(3000);
+      digitalWrite(secondp_Led, LOW);
+      break;
+
+    case 3:
+      
+
   }
 }
 

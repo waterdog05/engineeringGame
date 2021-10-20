@@ -173,14 +173,6 @@ void moveBelt() {
   }
   else { 
     finWinner = 3;
-
-    digitalWrite(firstp_Led, HIGH);
-    digitalWrite(secondp_Led, HIGH);
-    lcd.setCursor(8, 3);  //tie
-    lcd.print("Tie!");
-    delay(10000);
-    digitalWrite(firstp_Led, LOW);
-    digitalWrite(secondp_Led, LOW);
   }
 }
 
@@ -194,7 +186,7 @@ void showResult() {
       lcd.print("Lose");
       //delay(5000);
 
-      servo1.write(100);  //move 2cm
+      servo1.write(100);  //move +2cm
       servo2.write(100);
       delay(2000);
       servo1.write(90);
@@ -211,7 +203,7 @@ void showResult() {
       lcd.print("Win!");
       //delay(5000);
 
-      servo1.write(80);
+      servo1.write(80);  //move -2cm
       servo2.write(80);
       delay(2000);
       servo1.write(90);
@@ -221,7 +213,14 @@ void showResult() {
       break;
 
     case 3:
-      
+      digitalWrite(firstp_Led, HIGH);
+      digitalWrite(secondp_Led, HIGH);
+      lcd.setCursor(8, 3);  //tie
+      lcd.print("Tie!");
+      delay(10000);
+      digitalWrite(firstp_Led, LOW);
+      digitalWrite(secondp_Led, LOW);
+      break;
 
   }
 }

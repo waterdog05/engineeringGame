@@ -260,6 +260,7 @@ void gameReset() {
       break;
   }
 
+  finWinner = 0;
   delay(1500);
   lcd.clear();
   lcd.setCursor(3, 1);

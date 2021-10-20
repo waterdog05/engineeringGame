@@ -71,6 +71,7 @@ void loop() {
     for (;;) {
       btnCnt1();  //count push num
       btnCnt2();
+      moveBelt();
       
       if (stopper == 1) {
         MsTimer2::stop();
@@ -78,6 +79,7 @@ void loop() {
       }
     }
     
+    calcFinWinner();
     showResult();  //end game and show result
     gameReset();  //reset game
   }
@@ -143,11 +145,9 @@ void btnCnt2() {
   */
 }
 
-/*
 int stopCountPush() {
   stopper = 1;
 }
-*/
 
 void moveBelt() {
   if (buttonPushCounter1 > buttonPushCounter2) {  //1P win

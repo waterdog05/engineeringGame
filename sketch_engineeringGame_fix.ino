@@ -201,25 +201,24 @@ void gameReset() {
   switch (winner) {
     case 1:
       winner = 0;
-      servo1.write(80);
+      servo1.write(80);  //+10cm move
       servo2.write(80);
-      delay(2000);
+      delay(2220);
       servo1.write(90);
       servo2.write(90);
       break;
       
     case 2:
       winner = 0;
-      servo1.write(100);
+      servo1.write(100);  //-10cm move
       servo2.write(100);
-      delay(2000);
+      delay(2220);
       servo1.write(90);
       servo2.write(90);
       break;
       
     case 3:
       winner = 0;
-      stopper = 0;
       break;
   }
 

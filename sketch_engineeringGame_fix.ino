@@ -18,12 +18,12 @@ int secondp_Led = 6;
 const int buttonPin1 = 8;  //1p button setup
 int buttonState1 = 0;
 int lastButtonState1 = 0;
-int buttonPushCounter1;
+int buttonPushCounter1 = 0;
 
 const int buttonPin2 = 12;  //2p button setup
 int buttonState2 = 0;
 int lastButtonState2 = 0;
-int buttonPushCounter2;
+int buttonPushCounter2 = 0;
 
 int finWinner = 0;
 int cntFirstPWin = 0;

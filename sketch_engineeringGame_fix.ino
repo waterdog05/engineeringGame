@@ -273,7 +273,6 @@ void gameReset() {
       break;
   }
 
-  delay(1500);
   lcd.clear();
   lcd.setCursor(3, 1);
   lcd.print("Game Resetted!");

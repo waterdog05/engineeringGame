@@ -168,18 +168,18 @@ void moveBelt() {
   if (buttonPushCounter1 > buttonPushCounter2) {  //1P win
     cntFirstPWin += 1;
     
-    servo1.write(100);
-    servo2.write(100);
-    delay(800);
+    servo1.write(120);
+    servo2.write(120);
+    delay(200);
     servo1.write(90);
     servo2.write(90);
   }
   else if (buttonPushCounter1 < buttonPushCounter2) {  //2P win
     cntSecondPWin += 1;
     
-    servo1.write(80);
-    servo2.write(80);
-    delay(800);
+    servo1.write(60);
+    servo2.write(60);
+    delay(200);
     servo1.write(90);
     servo2.write(90);
   }

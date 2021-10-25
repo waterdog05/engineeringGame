@@ -306,11 +306,11 @@ void gameReset() {
   cntFirstPWin = 0;
   cntSecondPWin = 0;
   j = 0;
+  startButtonState = LOW;
 
   lcd.clear();
   lcd.setCursor(3, 1);
   lcd.print("Game Resetted!");
   delay(1500);
   lcd.clear();
-  startButtonState = LOW;
 }

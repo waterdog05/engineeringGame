@@ -101,7 +101,7 @@ void loop() {
     */
     
     calcFinWinner();  //calculate final winner
-    delay(1000);
+    delay(500);
     showResult();  //end game and show result
     gameReset();  //reset game
   }
@@ -167,20 +167,20 @@ int stopCountPush() {
 }
 
 void moveBelt() {
-  if (buttonPushCounter1 > buttonPushCounter2) {  //1P win
+  if (buttonPushCounter1 > buttonPushCounter2) {  //1P > 2P
     cntFirstPWin += 1;
     
-    servo1.write(80);
-    servo2.write(100);
+    servo1.write(75);
+    servo2.write(105);
     delay(100);
     servo1.write(90);
     servo2.write(90);
   }
-  else if (buttonPushCounter1 < buttonPushCounter2) {  //2P win
+  else if (buttonPushCounter1 < buttonPushCounter2) {  //1P < 2P
     cntSecondPWin += 1;
     
-    servo1.write(100);
-    servo2.write(80);
+    servo1.write(105);
+    servo2.write(75);
     delay(100);
     servo1.write(90);
     servo2.write(90);
@@ -213,8 +213,8 @@ void showResult() {
       lcd.print("Lose");
       //delay(5000);
 
-      servo1.write(80);  //move +2cm
-      servo2.write(100);
+      servo1.write(75);
+      servo2.write(105);
       delay(1000);
       servo1.write(90);
       servo2.write(90);
@@ -230,8 +230,8 @@ void showResult() {
       lcd.print("Win!");
       //delay(5000);
 
-      servo1.write(100);  //move -2cm alter later
-      servo2.write(80);
+      servo1.write(105);
+      servo2.write(75);
       delay(1000);
       servo1.write(90);
       servo2.write(90);
@@ -244,7 +244,7 @@ void showResult() {
       digitalWrite(secondp_Led, HIGH);
       lcd.setCursor(8, 2);  //tie
       lcd.print("Tie!");
-      delay(9000);
+      delay(4000);
       digitalWrite(firstp_Led, LOW);
       digitalWrite(secondp_Led, LOW);
       break;
@@ -266,17 +266,17 @@ void gameReset() {
   switch (finWinner) {  //reset belt condition
     case 1:
       finWinner = 0;
-      /*
-      servo1.write(100);  //+10cm move
-      servo2.write(80);
+
+      servo1.write(105);  //+10cm move
+      servo2.write(75);
       delay(1000);
       servo1.write(90);
       servo2.write(90);
-      */
 
-      for (j = 0; j < (cntFirstPWin - cntSecondPWin - 2); j++) {
-        servo1.write(100);
-        servo2.write(80);
+
+      for (j = 0; j < (cntFirstPWin - cntSecondPWin -6); j++) {
+        servo1.write(105);
+        servo2.write(75);
         delay(100);
         servo1.write(90);
         servo2.write(90);
@@ -285,16 +285,16 @@ void gameReset() {
       
     case 2:
       finWinner = 0;
-      /*
+
       servo1.write(80);  //-10cm move
       servo2.write(100);
       delay(1000);
       servo1.write(90);
-      servo2.write(90);*/
+      servo2.write(90);
 
-      for (j = 0; j < (cntSecondPWin - cntFirstPWin - 2); j++) {
-        servo1.write(80);
-        servo2.write(100);
+      for (j = 0; j < (cntSecondPWin - cntFirstPWin - 6); j++) {
+        servo1.write(75);
+        servo2.write(105);
         delay(100);
         servo1.write(90);
         servo2.write(90);

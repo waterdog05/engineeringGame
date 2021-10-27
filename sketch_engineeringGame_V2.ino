@@ -269,15 +269,15 @@ void gameReset() {
 
       servo1.write(105);  //+10cm move
       servo2.write(75);
-      delay(1000);
+      delay(800);
       servo1.write(90);
       servo2.write(90);
 
 
-      for (j = 0; j < (cntFirstPWin - cntSecondPWin -6); j++) {
+      for (j = 0; j < (cntFirstPWin - cntSecondPWin); j++) {
         servo1.write(105);
         servo2.write(75);
-        delay(100);
+        delay(80);
         servo1.write(90);
         servo2.write(90);
       }
@@ -288,14 +288,14 @@ void gameReset() {
 
       servo1.write(80);  //-10cm move
       servo2.write(100);
-      delay(1000);
+      delay(800);
       servo1.write(90);
       servo2.write(90);
 
-      for (j = 0; j < (cntSecondPWin - cntFirstPWin - 6); j++) {
+      for (j = 0; j < (cntSecondPWin - cntFirstPWin); j++) {
         servo1.write(75);
         servo2.write(105);
-        delay(100);
+        delay(80);
         servo1.write(90);
         servo2.write(90);
       }

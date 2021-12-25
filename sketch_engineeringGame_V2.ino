@@ -90,15 +90,6 @@ void loop() {
         break;
       }
     }
-
-    /*
-    lcd.setCursor(4, 2);
-    lcd.print(buttonPushCounter1);  //print win num
-    lcd.setCursor(9, 2);
-    lcd.print("vs");
-    lcd.setCursor(15, 2);
-    lcd.print(buttonPushCounter2);
-    */
     
     calcFinWinner();  //calculate final winner
     delay(500);

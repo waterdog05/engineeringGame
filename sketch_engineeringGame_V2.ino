@@ -85,7 +85,7 @@ void loop() {
       stopper = 0;
       i++;
       
-      if (i == 20) {
+      if (i == 20) {  //stop game after 20 sec
         i = 0;
         break;
       }

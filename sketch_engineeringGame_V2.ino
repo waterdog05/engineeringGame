@@ -62,7 +62,7 @@ void setup() {
 void loop() {
   startButtonState = digitalRead(startButtonPin);
   if (startButtonState == HIGH) {
-    gameStarting();
+    gameStarting();  //setup game and start
     
     for (;;) {
       lcd.setCursor(2, 0);
@@ -70,15 +70,15 @@ void loop() {
       
       MsTimer2::start();
       for (;;) {
-        btnCnt1();
+        btnCnt1();  //button counting
         btnCnt2();
     
         if (stopper == 1) {
-          MsTimer2::stop();
+          MsTimer2::stop();  //1 sec
           break;
         }
       }
-      moveBelt();
+      moveBelt();  //moving belt
       lcd.clear();
       lcd.setCursor(2, 0);
       lcd.print("Engineering Game");
@@ -93,8 +93,8 @@ void loop() {
     
     calcFinWinner();
     delay(500);
-    showResult();
-    gameReset();
+    showResult();  //show final result
+    gameReset();  //game auto reset
   }
 }
 
